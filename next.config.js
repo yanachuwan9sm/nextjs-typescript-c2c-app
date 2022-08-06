@@ -2,6 +2,9 @@
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-}
-
-module.exports = nextConfig
+  compiler: {
+    // styled-componentsの有効化
+    styledComponents: true,
+  },
+};
+module.exports = nextConfig;
