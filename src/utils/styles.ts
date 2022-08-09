@@ -43,7 +43,7 @@ export function toPropValue<T>(
   /**
     
     -- Themeの値を使用する場合は、第三引数に theme を渡す事で、 第二引数の Resposive に対して Theme のキーを指定する
-    
+
     [ Docs ]
     -- toPropValue('margin-bottom','8px',theme) >> 'margin-bottom: 8px'
 
@@ -60,6 +60,8 @@ export function toPropValue<T>(
   if (prop === undefined) return undefined;
 
   if (isResponsivePropType(prop)) {
+    // ブレークポイントに対応したCSSの値のオブジェクトを指定する場合
+
     const result = [];
     for (const responsiveKey in prop) {
       if (responsiveKey === 'base') {
@@ -155,9 +157,11 @@ function toThemeValueIfNeeded<T>(propKey: string, value: T, theme?: AppTheme) {
     return theme.lineHeights[value];
   }
 
+  // Themeの値を利用しない場合
   return value;
 }
 
+// Propが ResposiveProp<T>型であるかどうかを判定する関数
 function isResponsivePropType<T>(prop: any): prop is ResponsiveProp<T> {
   return (
     prop &&
@@ -169,14 +173,17 @@ function isResponsivePropType<T>(prop: any): prop is ResponsiveProp<T> {
   );
 }
 
+// Propが SpaceThemeKeys型であるかどうかを判定する関数
 function isSpaceThemeKeys(prop: any, theme: AppTheme): prop is SpaceThemeKeys {
   return Object.keys(theme.space).filter((key) => key == prop).length > 0;
 }
 
+// Propが ColorThemeKeys型であるかどうかを判定する関数
 function isColorThemeKeys(prop: any, theme: AppTheme): prop is ColorThemeKeys {
   return Object.keys(theme.colors).filter((key) => key == prop).length > 0;
 }
 
+// Propが FontSizeThemeKeys型であるかどうかを判定する関数
 function isFontSizeThemeKeys(
   prop: any,
   theme: AppTheme
@@ -184,6 +191,7 @@ function isFontSizeThemeKeys(
   return Object.keys(theme.fontSizes).filter((key) => key == prop).length > 0;
 }
 
+// Propが LetterSpacingThemeKeys型であるかどうかを判定する関数
 function isLetterSpacingThemeKeys(
   prop: any,
   theme: AppTheme
@@ -193,6 +201,7 @@ function isLetterSpacingThemeKeys(
   );
 }
 
+// Propが LineHeightThemeKeys型であるかどうかを判定する関数
 function isLineHeightThemeKeys(
   prop: any,
   theme: AppTheme
