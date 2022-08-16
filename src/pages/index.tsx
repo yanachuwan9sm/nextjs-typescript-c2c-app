@@ -1,3 +1,4 @@
+import Dropzone from 'components/molecules/Dropzone';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Image from 'next/image';
