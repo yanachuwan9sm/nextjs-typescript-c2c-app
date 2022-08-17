@@ -170,8 +170,6 @@ const Dropzone = (props: DropzoneProps) => {
       )
     );
 
-    console.log(files);
-
     /**
      * Dropzoneコンポーネントの引数として受け取ったコールバック関数を実行
      * S3でのファイルアップロード処理等の処理をここで行う
